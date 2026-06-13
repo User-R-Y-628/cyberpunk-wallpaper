@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cyberpunk Wallpaper Gallery</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="logo">CYBER<span>WALL</span></h1>
+      <p class="subtitle">AI-Generated 1080×1920 Cyberpunk Wallpapers</p>
+      <p class="meta">0 wallpapers · Run <code>python update_gallery.py --copy</code> to populate</p>
+    </div>
+  </header>
+
+  <nav class="filter-bar" aria-label="Filter by tag">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="neon">Neon</button>
+    <button class="filter-btn" data-filter="city">City</button>
+    <button class="filter-btn" data-filter="rain">Rain</button>
+    <button class="filter-btn" data-filter="dark">Dark</button>
+    <button class="filter-btn" data-filter="abstract">Abstract</button>
+    <button class="filter-btn" data-filter="japan">Japan</button>
+    <button class="filter-btn" data-filter="space">Space</button>
+  </nav>
+
+  <main class="gallery" id="gallery">
+    <div style="grid-column:1/-1; text-align:center; padding:80px 24px; color:var(--text-muted); font-family:var(--font-mono);">
+      <p style="font-size:2rem; margin-bottom:16px;">[ NO IMAGES ]</p>
+      <p>Generate wallpapers first, then run:</p>
+      <ol style="display:inline-block; text-align:left; margin-top:12px; line-height:2;">
+        <li><code>python generate.py --all</code></li>
+        <li><code>python process.py</code></li>
+        <li><code>python update_gallery.py --copy</code></li>
+      </ol>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Generated with <a href="https://replicate.com" target="_blank" rel="noopener">Replicate</a> · Flux 1.1 Pro</p>
+  </footer>
+
+  <script>
+    const btns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.card');
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        cards.forEach(c => {
+          const show = f === 'all' || c.dataset.tags.includes(f);
+          c.style.display = show ? '' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
