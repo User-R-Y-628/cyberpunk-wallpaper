@@ -17,8 +17,8 @@ OUTPUT_DIR = Path("output")
 MODEL = "black-forest-labs/flux-1.1-pro"
 
 GENERATION_PARAMS = {
-    "width": 1080,
-    "height": 1920,
+    "width": 768,
+    "height": 1344,
     "num_inference_steps": 28,
     "guidance_scale": 3.5,
     "output_format": "png",
@@ -74,7 +74,7 @@ def parse_args():
     group.add_argument("--ids", help="Comma-separated IDs to generate, e.g. 1,3,5")
     group.add_argument("--start", type=int, help="Generate from this ID onwards")
     parser.add_argument("--end", type=int, help="Stop at this ID (used with --start)")
-    parser.add_argument("--delay", type=float, default=2.0, help="Seconds between requests (default: 2)")
+    parser.add_argument("--delay", type=float, default=12.0, help="Seconds between requests (default: 12)")
     return parser.parse_args()
 
 
